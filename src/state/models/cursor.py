@@ -7,4 +7,5 @@ from pydantic import BaseModel, constr
 class Cursor(BaseModel):
     """Opaque cursor token for event synchronization."""
 
-    __root__: constr(regex=r"^s:\d+$")
+    __root__: constr(min_length=1)
+
