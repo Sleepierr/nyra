@@ -18,3 +18,5 @@ class EventEnvelope(BaseModel):
     type: str
     payload: Dict[str, Any]
     meta: Optional[Dict[str, Any]] = None
+
+    """No validation beyond Pydantic structural typing is performed.""" 
