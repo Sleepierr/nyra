@@ -8,7 +8,10 @@ from typing_extensions import Literal
 
 
 class Instance(BaseModel):
-    """Canonical stored instance record."""
+    """Canonical stored instance record.
+
+    No validation beyond Pydantic structural typing is performed.
+    """
 
     instance_id: str
     display_name: str
@@ -17,10 +20,3 @@ class Instance(BaseModel):
     device_model: Optional[str] = None
     os_version: Optional[str] = None
     app_version: Optional[str] = None
-    created_utc: str
-    last_seen_utc: str
-    status: Literal["active", "disabled", "revoked"]
-    role_hint: Optional[str] = None
-    notes: Optional[str] = None
-
-    """No validation beyond Pydantic structural typing is performed."""
