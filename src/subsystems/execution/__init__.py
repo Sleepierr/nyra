@@ -42,6 +42,10 @@ from .goals import (
     GoalStatus,
     GoalTier,
 )
+from .identity_executor import IdentityContinuityExecutor
+from .learning_executor import LearningExecutor
+from .maintenance_executor import MaintenanceExecutor
+from .memory_executor import MemoryExecutor
 from .orchestration import CognitiveOrchestrator, IntegrationManager
 
 __all__ = [
@@ -89,5 +93,11 @@ __all__ = [
     # Orchestration
     "CognitiveOrchestrator",
     "IntegrationManager",
+    # Phase 6 Executors
+    "MemoryExecutor",
+    "LearningExecutor",
+    "IdentityContinuityExecutor",
+    "MaintenanceExecutor",
 ]
+
 

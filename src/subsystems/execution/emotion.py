@@ -235,3 +235,4 @@ class EmotionalEngineExecutor(SubsystemExecutor):
             "recommendation": "proceed" if load.level < 0.7 else "defer",
         }
 
+

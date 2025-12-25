@@ -626,3 +626,4 @@ class DebateManager(SubsystemExecutor):
 
         return veto_flags
 
+

@@ -20,9 +20,10 @@ from .base import ExecutionContext, SubsystemExecutor
 from .debate import DebateManager
 from .emotion import EmotionalEngineExecutor
 from .goals import CognitiveLoopExecutor
-
-if TYPE_CHECKING:
-    from ...state.container import StateContainer
+from .identity_executor import IdentityContinuityExecutor
+from .learning_executor import LearningExecutor
+from .memory_executor import MemoryExecutor
+from .maintenance_executor import MaintenanceExecutor
 
 
 class IntegrationManager:
@@ -161,7 +162,7 @@ class CognitiveOrchestrator:
 
     def __init__(
         self,
-        state_container: "StateContainer",
+        state_container: StateContainer,
         event_bus: EventBus,
         event_factory: EventFactory,
         scheduler: Scheduler,
@@ -199,6 +200,14 @@ class CognitiveOrchestrator:
             CognitiveLoopExecutor(),
             EmotionalEngineExecutor(),
         ]
+
+        # Phase 6: Add new executors
+        executors.extend([
+            MemoryExecutor(),
+            LearningExecutor(),
+            IdentityContinuityExecutor(),
+            MaintenanceExecutor(),
+        ])
 
         # Initialize each executor
         for executor in executors:
@@ -349,4 +358,5 @@ class CognitiveOrchestrator:
     def executors(self) -> Dict[SubsystemKeys, SubsystemExecutor]:
         """Return dictionary of all subsystem executors."""
         return self._executors
+
 

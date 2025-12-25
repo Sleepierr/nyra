@@ -188,3 +188,4 @@ class CursorManager:
         self.update_cursor(new_cursor)
         return new_cursor
 
+

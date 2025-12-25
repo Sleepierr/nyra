@@ -18,7 +18,11 @@ from .execution import (
     EmotionalEngineExecutor,
     ExecutionContext,
     GoalManager,
+    IdentityContinuityExecutor,
     IntegrationManager,
+    LearningExecutor,
+    MaintenanceExecutor,
+    MemoryExecutor,
     PrimaryMoodVector,
     SubsystemExecutor,
 )
@@ -40,5 +44,11 @@ __all__ = [
     "PrimaryMoodVector",
     "CompetencyDomain",
     "CompetencyProfile",
+    # Phase 6
+    "MemoryExecutor",
+    "LearningExecutor",
+    "IdentityContinuityExecutor",
+    "MaintenanceExecutor",
 ]
+
 

@@ -37,7 +37,9 @@ class EventQueue:
         """
         with self._lock:
             self._events.append(event)
-            # Sort by seq if available, otherwise by ts_utc
+            # Sort by seq if available (seq > 0), otherwise by ts_utc timestamp
+            # Per spec: seq is the canonical ordering key, so seq>0 events take precedence
+            # Events with seq=0 are sorted chronologically by ts_utc among themselves
             self._events.sort(key=lambda e: (e.seq if e.seq > 0 else float("inf"), e.ts_utc))
 
     def dequeue(self) -> Optional[EventEnvelope]:
@@ -83,4 +85,5 @@ class EventQueue:
         """Remove all events from the queue."""
         with self._lock:
             self._events.clear()
+
 
