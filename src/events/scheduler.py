@@ -272,28 +272,33 @@ class Scheduler:
 
         Should be called periodically (e.g., every second) to check triggers.
         Thread-safe.
+
+        Callbacks are executed outside the lock to avoid deadlocks if they
+        attempt to register or cancel triggers.
         """
         now = datetime.now(timezone.utc)
 
+        # Collect triggers that should fire and their callbacks while holding lock
+        to_fire: list[tuple[str, Callable[[], None], Trigger]] = []
         with self._lock:
-            # Collect triggers that should fire
-            to_fire: list[str] = []
             for trigger_id, trigger in self._triggers.items():
                 if trigger.is_active() and trigger.should_fire(now):
-                    to_fire.append(trigger_id)
+                    callback = self._callbacks.get(trigger_id)
+                    if callback:
+                        to_fire.append((trigger_id, callback, trigger))
 
-            # Fire callbacks and mark triggers
-            for trigger_id in to_fire:
-                trigger = self._triggers[trigger_id]
-                callback = self._callbacks.get(trigger_id)
+        # Execute callbacks outside the lock to avoid deadlocks
+        # (callbacks may attempt to register/cancel triggers)
+        for trigger_id, callback, trigger in to_fire:
+            try:
+                callback()
+            except Exception:
+                # Phase 4: Basic error handling - log and continue
+                pass
 
-                if callback:
-                    try:
-                        callback()
-                    except Exception:
-                        # Phase 4: Basic error handling - log and continue
-                        pass
-
+        # Reacquire lock to mark triggers and clean up one-shot triggers
+        with self._lock:
+            for trigger_id, callback, trigger in to_fire:
                 trigger.mark_fired(now)
 
                 # Remove one-shot triggers after firing
