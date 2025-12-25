@@ -497,7 +497,14 @@ class DebateManager(SubsystemExecutor):
 
         Returns:
             DebateOutcome with final decision.
+
+        Raises:
+            ValueError: If the issue has no options.
         """
+        # Validate issue has at least one option before proceeding
+        if not issue.options:
+            raise ValueError("Debate issue must have at least one option")
+
         # Stage 1: Proposal Generation
         role_opinions: Dict[str, RoleOpinion] = {}
         for role_name, role in self._roles.items():
@@ -618,3 +625,4 @@ class DebateManager(SubsystemExecutor):
                 veto_flags[role_name] = False
 
         return veto_flags
+

@@ -409,3 +409,4 @@ class CognitiveLoopExecutor(SubsystemExecutor):
                     "goal_id": context.committed_goal.goal_id if context.committed_goal else None,
                 },
             )
+

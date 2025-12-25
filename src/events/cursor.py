@@ -187,3 +187,4 @@ class CursorManager:
         new_cursor = self.advance_cursor(events)
         self.update_cursor(new_cursor)
         return new_cursor
+

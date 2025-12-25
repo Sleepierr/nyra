@@ -159,7 +159,11 @@ class TimeOfDayTrigger(Trigger):
         # Check if current time matches trigger time (within the same second)
         target_time = dt_time(self.hour, self.minute, self.second)
         current_time = now.time()
-        return current_time >= target_time
+        return (
+            current_time.hour == target_time.hour
+            and current_time.minute == target_time.minute
+            and current_time.second == target_time.second
+        )
 
     def mark_fired(self, now: datetime) -> None:
         """Record that the trigger fired today.
@@ -314,3 +318,4 @@ class Scheduler:
         """
         with self._lock:
             return [t for t in self._triggers.values() if t.is_active()]
+

@@ -255,3 +255,4 @@ class SubsystemExecutor(ABC):
         if self._context is None:
             raise RuntimeError("Executor not initialized")
         return self._context
+

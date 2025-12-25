@@ -83,3 +83,4 @@ class EventQueue:
         """Remove all events from the queue."""
         with self._lock:
             self._events.clear()
+

@@ -260,3 +260,4 @@ class SubsystemAdapterFactory:
         Useful when the underlying container is reset.
         """
         self._adapter_cache.clear()
+

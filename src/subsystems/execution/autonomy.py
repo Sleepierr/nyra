@@ -407,3 +407,4 @@ class AutonomyFrameworkExecutor(SubsystemExecutor):
         if self._enforcer is None:
             return False
         return self._enforcer.check_permission(action, required_band)
+

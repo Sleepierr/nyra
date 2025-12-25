@@ -131,3 +131,4 @@ class EventBus:
         """
         with self._lock:
             return sum(len(handlers) for handlers in self._subscriptions.values())
+
