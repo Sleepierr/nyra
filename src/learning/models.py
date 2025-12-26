@@ -97,3 +97,5 @@ class LearningOpportunity(BaseModel):
             data["opportunity_id"] = str(uuid.uuid4())
         super().__init__(**data)
 
+
+

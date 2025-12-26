@@ -68,3 +68,5 @@ class IdentityContinuityExecutor(SubsystemExecutor):
             "history_entries": len(self._self_history._entries) if self._self_history else 0,
         }
 
+
+

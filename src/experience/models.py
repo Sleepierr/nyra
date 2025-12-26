@@ -68,3 +68,5 @@ class XPUpdate(BaseModel):
     }
     skill_tree_updates: List[Dict[str, Any]] = []
 
+
+

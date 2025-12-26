@@ -93,3 +93,5 @@ class DynamicTraitManager:
         """
         self._identity_invariants = invariants.copy()
 
+
+

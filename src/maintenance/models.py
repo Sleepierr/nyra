@@ -60,3 +60,5 @@ class MaintenanceReport(BaseModel):
             data["report_id"] = str(uuid.uuid4())
         super().__init__(**data)
 
+
+

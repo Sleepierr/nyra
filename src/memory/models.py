@@ -115,3 +115,5 @@ class LTMMemoryEntry(BaseModel):
             datetime: lambda v: v.isoformat(),
         }
 
+
+

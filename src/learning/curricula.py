@@ -69,3 +69,5 @@ class CurriculaGenerator:
             autonomy_band_required=skill.autonomy_band_required,
         )
 
+
+

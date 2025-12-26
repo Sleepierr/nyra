@@ -52,3 +52,5 @@ class SelfRepairManager:
             "transition_type": transition.get("type", "unknown"),
         }
 
+
+

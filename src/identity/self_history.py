@@ -94,3 +94,5 @@ class SelfHistoryLog:
             return None
         return self._entries[-1]
 
+
+
