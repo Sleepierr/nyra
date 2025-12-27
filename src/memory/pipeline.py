@@ -54,14 +54,18 @@ class MemoryPipeline:
         self._consolidator = MemoryConsolidator(state_container)
         self._index = index or MemoryIndex()
 
-    def process_stm_entry(self, stm_entry: STMMemoryEntry) -> Optional[LTMMemoryEntry]:
+    def process_stm_entry(
+        self, stm_entry: STMMemoryEntry, dry_run: bool = False
+    ) -> Optional[LTMMemoryEntry]:
         """Process STM entry through full pipeline.
 
         Args:
             stm_entry: Short-term memory entry to process.
+            dry_run: If True, process through all stages but skip final persistence.
 
         Returns:
             Consolidated LTM entry if successful, None if discarded.
+            In dry_run mode, returns processed entry without persisting to LTM.
         """
         # Stage 1: CAPTURE (already done - stm_entry is the captured data)
 
@@ -81,7 +85,9 @@ class MemoryPipeline:
             return None
 
         # Stage 5: INTEGRATE (index the memory)
-        self._index.index_memory(ltm_entry)
+        # In dry_run mode, skip persistence
+        if not dry_run:
+            self._index.index_memory(ltm_entry)
 
         # Phase 6: Integration with Experience System will be handled by ExperienceIntegrator
         # Here we just complete the memory pipeline

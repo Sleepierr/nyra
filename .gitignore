@@ -184,4 +184,6 @@ cython_debug/
 .DS_Store
 
 # Archive snapshots (exclude from root, allow in archive/)
-nyra.zip
+# Use leading slash to anchor pattern to repository root only
+/nyra.zip
+!/archive/*.zip

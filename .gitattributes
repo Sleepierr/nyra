@@ -4,6 +4,7 @@
 # macOS metadata - treat as binary and exclude from diffs
 .DS_Store binary -diff -merge
 
-# Archive snapshots - treat as binary (allow in archive/, block in root)
+# Archive snapshots - treat as binary
+# Note: .gitignore handles allowing zip files in archive/ directory
+# .gitattributes only controls how git treats files (binary vs text, diff behavior)
 *.zip binary -diff -merge
-!archive/*.zip

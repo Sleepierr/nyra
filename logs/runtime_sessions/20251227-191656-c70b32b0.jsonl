@@ -1,0 +1,1 @@
+{"event_id": "test-event-123", "seq": 0, "ts_utc": "2025-12-27T19:00:00.000Z", "source_instance_id": "test-instance", "source_kind": "transient", "type": "test.example", "payload": {"message": "Hello from gate test"}, "meta": null}

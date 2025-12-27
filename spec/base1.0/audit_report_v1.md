@@ -110,14 +110,16 @@ The following cleanup actions were performed as part of repository hygiene:
 
 ### macOS Metadata Removal
 
-- Removed 5 `.DS_Store` files from git tracking:
+**Action:** Removed `.DS_Store` files from git tracking (if any were previously tracked) and added safeguards to prevent future commits.
+
+- If present, removed `.DS_Store` files from git tracking:
   - `.DS_Store` (root)
   - `subsystems/.DS_Store`
   - `subsystems/base1.0/.DS_Store`
   - `subsystems/patches/.DS_Store`
   - `subsystems/patches/base1.0/.DS_Store`
-- Added `.DS_Store` to `.gitignore`
-- Added `.DS_Store` binary handling to `.gitattributes`
+- Added `.DS_Store` to `.gitignore` to prevent future tracking
+- Added `.DS_Store` binary handling to `.gitattributes` to treat as binary if accidentally committed
 
 ### Archive Policy
 

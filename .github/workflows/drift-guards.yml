@@ -1,0 +1,31 @@
+name: Base 1.0 Drift Guards
+
+on:
+  # Run on pushes to main/develop branches
+  push:
+    branches: [main, develop]
+  # Run on all pull requests (no branch restriction)
+  pull_request:
+
+jobs:
+  drift-guards:
+    name: Phase Boundary & Model Purity Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Phase Boundary Check
+        run: |
+          python tools/phase_boundary_check.py
+
+      - name: Run State Model Purity Check
+        run: |
+          python tools/state_model_purity_check.py
+
