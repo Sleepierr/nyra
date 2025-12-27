@@ -11,7 +11,7 @@ from collections import defaultdict
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from .models import LTMMemoryEntry
+from .models import LTMMemoryEntry, MemoryType
 
 
 class MemoryIndex:
@@ -166,13 +166,22 @@ class MemoryIndex:
         """Get memories by type.
 
         Args:
-            memory_type: Memory type string.
+            memory_type: Memory type string (will be converted to MemoryType enum).
             limit: Optional maximum number of results.
 
         Returns:
             List of matching LTM entries.
+
+        Raises:
+            ValueError: If memory_type is not a valid MemoryType enum value.
         """
-        return self.query_memories({"type": memory_type}, limit=limit)
+        # Convert string to MemoryType enum (query_memories expects enum)
+        try:
+            memory_type_enum = MemoryType(memory_type)
+        except ValueError:
+            raise ValueError(f"Invalid memory type: {memory_type}")
+
+        return self.query_memories({"type": memory_type_enum}, limit=limit)
 
     def get_recent(self, limit: int = 10) -> List[LTMMemoryEntry]:
         """Get most recent memories.
@@ -252,6 +261,8 @@ class MemoryIndex:
             LTM entry if found, None otherwise.
         """
         return self._memories.get(memory_id)
+
+
 
 
 

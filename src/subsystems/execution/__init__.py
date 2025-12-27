@@ -47,6 +47,7 @@ from .learning_executor import LearningExecutor
 from .maintenance_executor import MaintenanceExecutor
 from .memory_executor import MemoryExecutor
 from .orchestration import CognitiveOrchestrator, IntegrationManager
+from .presence_executor import PresenceExecutor
 
 __all__ = [
     # Base
@@ -98,7 +99,11 @@ __all__ = [
     "LearningExecutor",
     "IdentityContinuityExecutor",
     "MaintenanceExecutor",
+    # Phase 7 Executor
+    "PresenceExecutor",
 ]
+
+
 
 
 

@@ -24,6 +24,7 @@ from .identity_executor import IdentityContinuityExecutor
 from .learning_executor import LearningExecutor
 from .memory_executor import MemoryExecutor
 from .maintenance_executor import MaintenanceExecutor
+from .presence_executor import PresenceExecutor
 
 
 class IntegrationManager:
@@ -209,6 +210,9 @@ class CognitiveOrchestrator:
             MaintenanceExecutor(),
         ])
 
+        # Phase 7: Add presence executor
+        executors.append(PresenceExecutor())
+
         # Initialize each executor
         for executor in executors:
             executor.initialize(self._context)
@@ -358,6 +362,8 @@ class CognitiveOrchestrator:
     def executors(self) -> Dict[SubsystemKeys, SubsystemExecutor]:
         """Return dictionary of all subsystem executors."""
         return self._executors
+
+
 
 
 

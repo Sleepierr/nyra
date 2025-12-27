@@ -23,6 +23,7 @@ from .execution import (
     LearningExecutor,
     MaintenanceExecutor,
     MemoryExecutor,
+    PresenceExecutor,
     PrimaryMoodVector,
     SubsystemExecutor,
 )
@@ -49,7 +50,11 @@ __all__ = [
     "LearningExecutor",
     "IdentityContinuityExecutor",
     "MaintenanceExecutor",
+    # Phase 7
+    "PresenceExecutor",
 ]
+
+
 
 
 
