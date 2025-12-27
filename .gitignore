@@ -179,4 +179,9 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# macOS metadata
+.DS_Store
+
+# Archive snapshots (exclude from root, allow in archive/)
 nyra.zip
